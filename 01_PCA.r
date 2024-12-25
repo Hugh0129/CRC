@@ -8,7 +8,7 @@ library(plyr)
 library(ggord)
 library(yyplot)
 library(org.Hs.eg.db)
-expr_df = read.csv('TPM.csv', header = T,row.names=1, sep = ',', quote = '', stringsAsFactors = FALSE, check.names = FALSE)  
+expr_df = read.csv('ensembl_matrix_TPM.csv', header = T,row.names=1, sep = ',', quote = '', stringsAsFactors = FALSE, check.names = FALSE)  
 meta_df = read.csv('meta_data.csv',row.names=1, header = T,sep = ',',quote = '', check.names = FALSE)
 expr_df[1:3,1:4]
 expr_df = expr_df[rowMeans(expr_df)>10,] 
