@@ -121,15 +121,15 @@ FeaturePlot(CRC,
             pt.size = 1,
             label = TRUE)
 CRC@meta.data$Celltype = "NA"
-CRC@meta.data$Celltype[which(CRC@meta.data$seurat_clusters%in%c(11,14))] <- 'THBS2_fib'
-CRC@meta.data$Celltype[which(CRC@meta.data$seurat_clusters%in%c(1,9,10))] <- 'Fib'
+CRC@meta.data$Celltype[which(CRC@meta.data$seurat_clusters%in%c(9,10,11,14))] <- 'THBS2_CAF'
+CRC@meta.data$Celltype[which(CRC@meta.data$seurat_clusters%in%c(1))] <- 'CAF/Epi '
 CRC@meta.data$Celltype[which(CRC@meta.data$seurat_clusters%in%c(16))] <- 'Myofib'
 CRC@meta.data$Celltype[which(CRC@meta.data$seurat_clusters%in%c(0,2,3,4,5,8,13))] <- 'Epi'
 CRC@meta.data$Celltype[which(CRC@meta.data$seurat_clusters%in%c(6))] <- 'SPP1_mac'
 CRC@meta.data$Celltype[which(CRC@meta.data$seurat_clusters%in%c(17))] <- 'SPP1_mac/T/Epi'
 CRC@meta.data$Celltype[which(CRC@meta.data$seurat_clusters%in%c(12))] <- 'Mac'
-CRC@meta.data$Celltype[which(CRC@meta.data$seurat_clusters%in%c(7))] <- 'THBS2_fib/T/B'
-CRC@meta.data$Celltype[which(CRC@meta.data$seurat_clusters%in%c(15))] <- 'Endo'
+CRC@meta.data$Celltype[which(CRC@meta.data$seurat_clusters%in%c(7))] <- 'THBS2_CAF/T/B'
+CRC@meta.data$Celltype[which(CRC@meta.data$seurat_clusters%in%c(15))] <- 'CAF/Endo'
 Idents(CRC) = "Celltype"
 p1 <- DimPlot(CRC, reduction = "umap", label = TRUE,
               cols = paletteDiscrete(values = unique(CRC@meta.data$Celltype)))
