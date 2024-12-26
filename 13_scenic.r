@@ -20,7 +20,6 @@ pyscenic grn \
 sample.loom \
 hs_hgnc_tfs.txt 
 
-
 pyscenic ctx \
 adj.sample.tsv \
 hg38__refseq-r80__10kb_up_and_down_tss.mc9nr.feather \
@@ -31,7 +30,6 @@ hg38__refseq-r80__10kb_up_and_down_tss.mc9nr.feather \
 --num_workers 6 \
 --mask_dropouts
 
-
 pyscenic aucell \
 sample.loom \
 reg.csv \
@@ -39,6 +37,7 @@ reg.csv \
 --num_workers 6
 
 #=====================================================================================================
+#plot
 dev.off()
 rm(list=ls())
 dir()
