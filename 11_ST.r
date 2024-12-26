@@ -23,12 +23,12 @@ allcolour=c("#DC143C","#0000FF","#20B2AA","#FFA500","#9370DB","#98FB98","#F08080
             "#808000","#FF00FF","#FA8072","#7B68EE","#9400D3","#800080","#A0522D","#D2B48C","#D2691E","#87CEEB","#40E0D0","#5F9EA0",
             "#FF1493","#0000CD","#008B8B","#FFE4B5","#8A2BE2","#228B22","#E9967A","#4682B4","#32CD32","#F0E68C","#FFFFE0","#EE82EE",
             "#FF6347","#6A5ACD","#9932CC","#8B008B","#8B4513","#DEB887") 
-expr <- "/A4/raw_feature_bc_matrix/"
+expr <- "./A4/raw_feature_bc_matrix/"
 expr.mydata <- Seurat::Read10X(data.dir =  expr )
 mydata <- Seurat::CreateSeuratObject(counts = expr.mydata, project = 'Posterior1', assay = 'Spatial')
 mydata$slice <- "slice1"
 mydata$region <- 'Posterior1' #命名
-imgpath <- "/A4/spatial/"
+imgpath <- "./A4/spatial/"
 img <- Seurat::Read10X_Image(image.dir = imgpath)
 Seurat::DefaultAssay(object = img) <- 'Spatial'
 img <- img[colnames(x = mydata)]
@@ -104,7 +104,7 @@ p2 <- GroupCorrelationPlot(CRC, assay = "SCT", cor = "nCount_Spatial_cor") + ggt
   theme(plot.title = element_text(hjust = 0.5))
 p3 <- plot_grid(p1, p2)
 p3
-CRC <- RunPCA(CRC, assay = "SCT", verbose = FALSE)  #选择SCT归一化的assay
+CRC <- RunPCA(CRC, assay = "SCT", verbose = FALSE)
 CRC <- FindNeighbors(CRC, reduction = "pca", dims = 1:30)
 CRC <- FindClusters(CRC, verbose = FALSE)
 CRC <- RunUMAP(CRC, reduction = "pca", dims = 1:30)
@@ -114,12 +114,10 @@ p2 <- SpatialDimPlot(CRC, label = TRUE, label.size = 3,
                      cols = paletteDiscrete(values = unique(CRC@meta.data$seurat_clusters)))
 plot_grid(p1, p2)
 SpatialFeaturePlot(CRC, features = c("THBS2", "EPCAM"))
-
 FeaturePlot(CRC,
             reduction = "umap",
             features = c("THBS2"),
             sort.cell = TRUE,
-            #split.by = "tissue",
             pt.size = 1,
             label = TRUE)
 CRC@meta.data$Celltype = "NA"
@@ -147,10 +145,8 @@ markers.to.plot <- c( "EPCAM","KRT8","CDH1", # epi
                       "CPA3", # mast
                       "CD79A" # B
 )
-
 DotPlot(CRC, 
         features =markers.to.plot, 
-        #cols = c("blue", "red"), 
         dot.scale = 8) + RotatedAxis()
 
 
